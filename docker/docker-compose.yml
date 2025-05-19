@@ -15,4 +15,6 @@ services:
       - nextjs-pnpm-store:/workspace/.pnpm-store
     environment:
       - NODE_ENV=development
-    command: sleep infinity
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    command: pnpm install
