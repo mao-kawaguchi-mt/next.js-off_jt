@@ -1,13 +1,13 @@
-//HTMLの要素取得
+// HTMLの要素取得
 const form = document.getElementById("myForm");
 
-//送信の動作
+// 送信の動作
 form.addEventListener("submit", (e) => {
 	e.preventDefault();//ページのリロード防止
 
   try{
-    //バリデ結果の配列を作成、{}で初期値は空
-    const results = {}; [
+    // バリデ結果の配列を作成
+    const results = [
       {
         id: "name",
         isValid: true,
@@ -19,7 +19,7 @@ form.addEventListener("submit", (e) => {
         message: "年齢を入力してください",
       },
       {
-        id: "status",
+        id: "job",
         isValid: true,
         message: "職業を選択してください",
       },
@@ -38,55 +38,47 @@ form.addEventListener("submit", (e) => {
       const value = element.value;
       // id毎に空欄チェック
       result.isValid = value.trim() !== "";
-      }
     }
 
-	const username = document.getElementById("username");
-	const age = document.getElementById("age");
-	const status = document.getElementById("status");
-	const intro = document.getElementById("intro");
-
-	const usernameValue = username.value.trim();
-	const ageValue = age.value;
-	const statusValue = status.value;
-	const introValue = intro.value.trim();
-
-	try {
-		let hasError = false;
-
-		if (usernameValue === "") {
-			hasError = true;
-		}
-
-		if (ageValue === "") {
-			hasError = true;
-		}
-
-		if (statusValue === "") {
-			hasError = true;
-		}
-
-		if (introValue === "") {
-			hasError = true;
-		}
-
-		if (hasError) {
-			throw new Error("エラーが発生しました");
-		}
-
+    // 全てのチェックが終わったら、それぞれのisValidをチェックする
+    const allValid = results.every((result) => result.isValid);
+    //どれか一つでも引っかかった場合
+    if (!allValid) {
+      // catchにそれぞれの項目のメッセージとIDを渡す
+      const errorObject = {};
+      results
+        // 引っかかった項目だけ抽出
+        .filter(result => !result.isValid)
+        // idとメッセージ組み合わせ
+        .forEach(result => {
+          errorObject[result.id] = result.message;
+        });
+      // 処理が止まる
+      throw new Error(JSON.stringify(errorObject));
+    }
+    
+    //dataを定義
 		const data = {
 			username: username.value,
 			age: age.value,
-			status: status.value,
+			status: job.value,
 			intro: intro.value,
 		};
 
-		console.log(JSON.stringify(data, null, 2));
-	} catch (error) {
-		document.getElementById(error).style.display = "block";
-		console.error("エラー：", error);
-		alert("データの取得に失敗しました");
-	}
+    const jsonOutput = JSON.stringify(data, null, 2);
+		console.log(jsonOutput);
+		} catch (error) {
+    // 文字列をオブジェクトに変換する
+    const errorObject = JSON.parse(error.message);
+    // エラーメッセージを表示する
+    for (const [id, message] of Object.entries(errorObject)) {
+      const errorElement = document.getElementById(`error_${id}`);
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+      }
+    }
+  }
 });
 
 /*
