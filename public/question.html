@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>アンケートフォーム</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <div>
+        <label for="name">名前</label>
+        <input type="text" placeholder="入力してください" id="name" name="name"/>
+        <p id ="error_name" style="color:red; display:none;">名前は必須です</p>
+      </div>
+      <div>
+        <label for="age">年齢(18歳以上)</label>
+        <input type="number" placeholder="選択してください" id="age" name="age" min="18">
+        <p id ="error_age" style="color:red; display:none;">年齢は必須です</p>
+      </div>
+      <div>
+        <label for="status">職業</label>
+        <select id="job" name="job">
+          <option value="">選択してください</option>
+          <option value="student">学生</option>
+          <option value="working">社会人</option>
+          <option value="student">無職</option>
+        </select>
+        <p id ="error_job" style="color:red; display:none;">職業は必須です</p>
+      </div>
+      <div>
+        <label for="intro">自己紹介</label>
+        <textarea cols="50" placeholder="入力してください" id="intro" name="intro"></textarea>
+        <p id ="error_intro" style="color:red; display:none;">自己紹介は必須です</p>
+      </div>
+      <button type="submit">送信</button>
+    </form>
+    <script src="question.js"></script>
+  </body>
+</html>
