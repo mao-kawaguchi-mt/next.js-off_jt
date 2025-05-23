@@ -5,11 +5,11 @@ export default function Page() {
   const message = '今日もがんばりましょう！';
 
   return (
-    <div>
+    <>
       <h1>こんにちは！</h1>
       <p>今日は {today} です。</p>
       <p>{message}</p>
       <LikeButton/>
-    </div>
+    </>
   );
 }
