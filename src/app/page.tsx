@@ -1,16 +1,15 @@
-import Link from "next/link";
+import {LikeButton} from './components/LikeButton';
 
-export const metadata = {
-  title: "トップページ",
-};
+export default function Page() {
+  const today = new Date().toLocaleDateString();
+  const message = '今日もがんばりましょう！';
 
-const name: string = "Yuki";
-
-export default function Home() {
-	return (
-		<div>
-			<h1>こんにちは、{name}さん</h1>
-      <Link href = "/memos">memoへ</Link>
-		</div>
-	)
-};
+  return (
+    <>
+      <h1>こんにちは！</h1>
+      <p>今日は {today} です。</p>
+      <p>{message}</p>
+      <LikeButton/>
+    </>
+  );
+}
