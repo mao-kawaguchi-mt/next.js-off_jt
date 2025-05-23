@@ -18,7 +18,7 @@ const Form: React.FC = () => {
     defaultValues: {
       name: "",
       email: "",
-      age: 0,
+      age: undefined,
     },
     mode: "onChange"
   });
