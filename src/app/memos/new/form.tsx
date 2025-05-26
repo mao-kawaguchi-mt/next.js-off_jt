@@ -28,12 +28,7 @@ const Form: React.FC = () => {
   });
 
   const onValid = (data: FormValues) => {
-    console.log("送信データ:", data);
     setIsSubmitted(true);
-  };
-
-  const onInValid = (errors: FormValues) => {
-    console.log("バリデーションエラー:", errors);
   };
 
   return (
