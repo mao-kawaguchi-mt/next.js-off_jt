@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { schema } from '../new/schema';
@@ -11,6 +12,8 @@ type FormValues = {
 };
 
 const Form: React.FC = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -24,30 +27,38 @@ const Form: React.FC = () => {
     mode: "onChange"
   });
 
-  const onSubmit = (data: FormValues) => {
-  console.log("送信データ:", data);
+  const onValid = (data: FormValues) => {
+    console.log("送信データ:", data);
+    setIsSubmitted(true);
+  };
+
+  const onInValid = (errors: FormValues) => {
+    console.log("バリデーションエラー:", errors);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="border p-3 mb-4 rounded">
-        <input
-          {...register("title")} 
-          placeholder="タイトルを入力"
-        />
-        {errors.title && <p>{errors.title.message}</p>}
-      </div>
+    <>
+      {isSubmitted && <p>登録完了</p>}
+      <form onSubmit={handleSubmit(onValid)}>
+        <div className="border p-3 mb-4 rounded">
+          <input
+            {...register("title")} 
+            placeholder="タイトルを入力"
+          />
+          {errors.title && <p>{errors.title.message}</p>}
+        </div>
 
-      <div className="border p-3 mb-4 rounded">
-        <input
-          {...register("text")}
-          placeholder="本文を入力"
-        />
-        {errors.text && <p>{errors.text.message}</p>}
-      </div>
+        <div className="border p-3 mb-4 rounded">
+          <input
+            {...register("text")}
+            placeholder="本文を入力"
+          />
+          {errors.text && <p>{errors.text.message}</p>}
+        </div>
 
-      <button type="submit">送信</button>
-    </form>
+        <button type="submit">送信</button>
+      </form>
+    </>
   );
 };
 
