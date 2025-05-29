@@ -8,12 +8,10 @@ export default function Clock () {
       setNow(new Date());
     }, 1000);
 
-  return () => clearInterval(timer);
+    return () => clearInterval(timer);
   }, []);
 
   return(
-    <>
       <p>現在時刻 {now.toLocaleTimeString()}</p>
-    </>
   );
 }
