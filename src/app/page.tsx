@@ -1,4 +1,5 @@
 import {LikeButton} from './components/LikeButton';
+import Link from "next/link";
 
 export default function Page() {
   const today = new Date().toLocaleDateString();
@@ -10,6 +11,7 @@ export default function Page() {
       <p>今日は {today} です。</p>
       <p>{message}</p>
       <LikeButton/>
+      <Link href = "/memos">memoへ</Link>
     </>
   );
 }
