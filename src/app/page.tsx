@@ -1,4 +1,4 @@
-import {LikeButton} from './components/LikeButton';
+import { LikeButton } from './components/LikeButton';
 import Link from "next/link";
 
 export default function Page() {
@@ -11,7 +11,7 @@ export default function Page() {
       <p>今日は {today} です。</p>
       <p>{message}</p>
       <LikeButton/>
-      <Link href = "/memos">memoへ</Link>
+      <Link href="/memos">memoへ</Link>
     </>
   );
 }

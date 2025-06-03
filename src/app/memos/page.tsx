@@ -22,7 +22,7 @@ export default function MemosPage() {
       <h1>memo</h1>
       <ul>
         {data.map((memo: Memo) => (
-          <li key = { memo.id } > {memo.title}</li>
+          <li key ={memo.id} > {memo.title}</li>
         ))}
       </ul>
       <Link href = "/memos/id">idへ</Link>
