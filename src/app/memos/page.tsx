@@ -10,7 +10,7 @@ type Memo = {
   title: string;
 };
 
-export default function Memos() {
+export default function MemosPage() {
   const { data, error, isLoading } = useSWR ("/api/memos", fetcher);
   
   if (isLoading) return <p>読み込み中...</p>;
