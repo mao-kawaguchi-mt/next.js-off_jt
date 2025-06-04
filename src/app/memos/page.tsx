@@ -1,6 +1,6 @@
 "use client";
 
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
